@@ -29,6 +29,18 @@ A family management MVP suite consisting of Android mobile app, web app, and TV 
 - Multi-tenant data: each user belongs to a family with roles (parent/member)
 - Invitations can specify role; token passed as `inv` query parameter during login
 
+#### Local configuration
+Create a `.env` file in `backend/` (see `.env.example`) with:
+```
+GOOGLE_CLIENT_ID=your-google-client-id
+GOOGLE_CLIENT_SECRET=your-google-client-secret
+GOOGLE_CALLBACK_URL=http://localhost:3000/auth/google/callback
+JWT_SECRET=someSecureValue
+```
+Register OAuth credentials on the Google console and include both the local callback and the production URL (`https://homerules.js17.dev/auth/google/callback`).
+
+For production deployments (Vercel/AWS), set the same variables in environment settings so the app uses the correct callback and secrets.
+
 - Web: Next.js (React)
 - Mobile: React Native
 - TV: Web-based

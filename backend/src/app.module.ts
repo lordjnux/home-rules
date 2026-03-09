@@ -11,7 +11,7 @@ import { InvitationsModule } from './invitations/invitations.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'sqlite',
-      database: 'data/db.sqlite',
+      database: process.env.DATABASE_PATH || 'data/db.sqlite',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
