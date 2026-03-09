@@ -24,8 +24,8 @@ for (const v of required) {
 }
 
 // Vercel project details
-const PROJECT_ID = VERCEL_PROJECT_ID;
-const ORG_ID = VERCEL_ORG_ID;
+const PROJECT_ID = 'F24UZPuz2VY5fDvLKvr1PTrqF1pk';
+const ORG_ID = 'lordjnuxs-projects';
 
 // Environment variables to set (target: production)
 const ENV_VARS = {
@@ -38,7 +38,7 @@ const ENV_VARS = {
     target: ['production'],
   },
   GOOGLE_CALLBACK_URL: {
-    value: 'https://homerules.js17.dev/auth/google/callback',
+    value: 'https://backend-nu-six-74.vercel.app/auth/google/callback',
     target: ['production'],
   },
   JWT_SECRET: {

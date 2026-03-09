@@ -2,6 +2,10 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 
 const Home: NextPage = () => {
+  const handleLogin = () => {
+    window.location.href = `${process.env.NEXT_PUBLIC_API_URL}/auth/google`;
+  };
+
   return (
     <div>
       <Head>
@@ -15,6 +19,7 @@ const Home: NextPage = () => {
           Welcome to Home Rules
         </h1>
         <p>Admin panel and family dashboard</p>
+        <button onClick={handleLogin}>Login with Google</button>
       </main>
     </div>
   )
