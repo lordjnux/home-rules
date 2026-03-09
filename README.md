@@ -23,6 +23,12 @@ A family management MVP suite consisting of Android mobile app, web app, and TV 
 
 ## Tech Stack
 - Backend: Nest.js (Node.js)
+
+### Authentication
+- Google OAuth for family accounts
+- Multi-tenant data: each user belongs to a family with roles (parent/member)
+- Invitations can specify role; token passed as `inv` query parameter during login
+
 - Web: Next.js (React)
 - Mobile: React Native
 - TV: Web-based
