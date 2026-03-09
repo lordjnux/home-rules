@@ -1,0 +1,45 @@
+name: CI & Deploy
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js 18
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Lint
+        run: npm run lint || true
+
+      - name: Build backend
+        run: |
+          cd backend
+          npm run build
+
+      - name: Build web
+        run: |
+          cd web
+          npm run build
+
+      - name: Deploy web to Vercel
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          cd web
+          npx vercel --prod --token $VERCEL_TOKEN --confirm
+
+  # you can add additional jobs for backend deployment if using another host

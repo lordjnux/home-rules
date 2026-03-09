@@ -41,6 +41,27 @@ Register OAuth credentials on the Google console and include both the local call
 
 For production deployments (Vercel/AWS), set the same variables in environment settings so the app uses the correct callback and secrets.
 
+## Continuous Integration / Deployment
+
+The repository is wired to GitHub Actions for CI and automated deploys:
+
+- workflow `.github/workflows/ci-deploy.yml` runs on every push or pull request to `main`.
+- it installs dependencies, lints, builds both the backend and web, then invokes the Vercel CLI to push the `web` directory to production.
+- configure the following **GitHub secrets**:
+  - `VERCEL_TOKEN` (create via `vercel tokens add` CLI)
+  - `VERCEL_ORG_ID` and `VERCEL_PROJECT_ID` (obtain from `vercel projects list` or dashboard)
+
+### Branch protection
+
+Protect `main` under repository Settings → Branches:
+
+1. Require pull request reviews before merging.
+2. Require status checks to pass, selecting the GitHub Actions job(s) above.
+3. Optionally require signed commits or linear history.
+
+Once set up, any push merged into `main` will trigger CI and automatically deploy the web app to https://homerules.js17.dev.
+
+
 - Web: Next.js (React)
 - Mobile: React Native
 - TV: Web-based
